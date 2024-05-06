@@ -1,7 +1,6 @@
 # Standard Packages
 import logging
 import os
-import requests
 from requests import Session
 import time
 import uuid
@@ -26,6 +25,7 @@ from flint.constants import (
     KHOJ_FAILED_DOCUMENT_UPLOAD_MESSAGE,
     KHOJ_MEDIA_NOT_IMPLEMENTED_MESSAGE,
 )
+from security import safe_requests
 
 
 # Initialize Router
@@ -241,7 +241,7 @@ async def response_to_user_whatsapp(message: str, from_number: str, body, intro_
         if media_url:
             # Write the file to a tmp directory
             filepath = f"/tmp/{int(time.time() * 1000)}.png"
-            response = requests.get(media_url)
+            response = safe_requests.get(media_url)
             response.raise_for_status()
 
             with open(filepath, "wb") as f:
