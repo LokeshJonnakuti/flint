@@ -241,7 +241,7 @@ async def response_to_user_whatsapp(message: str, from_number: str, body, intro_
         if media_url:
             # Write the file to a tmp directory
             filepath = f"/tmp/{int(time.time() * 1000)}.png"
-            response = requests.get(media_url)
+            response = requests.get(media_url, timeout=60)
             response.raise_for_status()
 
             with open(filepath, "wb") as f:
