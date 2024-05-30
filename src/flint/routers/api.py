@@ -201,8 +201,8 @@ def get_media_url(media_id):
     file_size = response["file_size"]
     # If the media is larger than 10 MB, return None
     if int(file_size) > 10 * 1024 * 1024:
-        logger.info(f"Media is larger than 10 MB, skipping")
-        raise ValueError(f"Media is larger than 10 MB")
+        logger.info("Media is larger than 10 MB, skipping")
+        raise ValueError("Media is larger than 10 MB")
     return response["url"], response["mime_type"]
 
 
